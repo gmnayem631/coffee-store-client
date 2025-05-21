@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleAddCoffee = (e) => {
@@ -18,7 +19,14 @@ const AddCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after adding coffee to db", data);
+        if (data.insertedId) {
+          console.log("added successfully");
+          Swal.fire({
+            title: "Coffee added successfully!",
+            icon: "success",
+            draggable: true,
+          });
+        }
       });
   };
 
